@@ -17,6 +17,7 @@
           <template v-slot:default>
             <div class="d-flex justify-content-between">
               <span @click="setDetailClass(kelas)">{{ kelas.name }}</span>
+              <hr>
               <button
                 type="button"
                 class="btn btn-danger"
@@ -25,6 +26,14 @@
                 <i class="fas fa-trash"></i>
               </button>
             </div>
+          </template>
+          <template v-slot:footer>
+            <button
+                type="button"
+                class="btn btn-primary"
+              >
+                <i class="fas fa-sign-in-alt"></i>
+              </button>
           </template>
         </BootstrapCard>
         <!-- </NuxtLink> -->
