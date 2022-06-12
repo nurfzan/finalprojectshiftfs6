@@ -52,7 +52,7 @@ export default {
     strategies: {
       local: {
         token: {
-          property: 'token',
+          property: 'data',
           global: true,
           type: false,
           // required: true,
@@ -63,9 +63,9 @@ export default {
           // autoFetch: true
         },
         endpoints: {
-          login: { url: 'https://service-classroom.herokuapp.com/api/login', method: 'post' },
+          login: { url: 'https://afternoon-peak-49963.herokuapp.com/user/login', method: 'post' },
           logout: false,
-          user: { url: 'https://service-classroom.herokuapp.com/api/users/me', method: 'get' }
+          user: { url: 'https://afternoon-peak-49963.herokuapp.com/user/me', method: 'get' }
         }
       }
     }
@@ -78,7 +78,7 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "https://service-classroom.herokuapp.com/api",
+    baseURL: "https://afternoon-peak-49963.herokuapp.com/",
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa

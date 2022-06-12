@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>{{ $store.state.class.title }}</h2>
+    <div class="section-header">
+      <h2>{{ $store.state.class.title }}</h2>
+    </div>
     <BootstrapFloatingButton @click.native="redirectAdd" />
     <div class="row">
       <div v-for="(kelas, i) in listClass" :key="i" class="col-md-4">
@@ -8,7 +10,7 @@
         <BootstrapCard>
           <template v-slot:header>
             <img
-              :src="kelas.img"
+              :src="kelas.file"
               alt=""
               style="height: 200px"
               @click="setDetailClass(kelas)"
@@ -31,6 +33,7 @@
             <button
                 type="button"
                 class="btn btn-primary"
+                @click="directSessionMaterial(kelas)"
               >
                 <i class="fas fa-sign-in-alt"></i>
               </button>
@@ -45,25 +48,30 @@
 import Button from "~/components/bootstrap/Button.vue";
 import Request from "~/mixins/request.vue";
 export default {
+  // middleware: "auth",
   components: { Button },
   mixins: [Request],
-  data() {
-    return {
-      listClass: this.$store.state.class.classes,
-    };
+  computed: {
+    listClass() {
+      return this.$store.state.class.classes;
+    },
   },
   created() {
     this.getlistClass();
   },
   methods: {
     redirectAdd() {
-      this.$store.dispatch("class/SET_CLASS", {
-        name: "",
-        description: "",
-        startDate: "",
-        endDate: "",
-      });
       this.$router.push("/class/addclass");
+      this.$store.dispatch("class/SET_CLASS", {
+        name: null,
+        description: null,
+        file: null,
+        dateFrom: null,
+        dateTo: null,
+      });
+    },
+    directSessionMaterial(kelas) {
+      this.$router.push(`/class/${kelas.id}/session/`);
     },
     // async getlistClass() {
     //   try {

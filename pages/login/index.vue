@@ -37,10 +37,15 @@ export default {
         this.$swal({
             title: "Welcome!",
             text: `You are successfully login`,
-            icon: "success",});
+            icon: "success"});
         this.$router.push("/");
       } catch (error) {
-        console.log(error);
+        this.$swal({
+          title: "Error",
+          //   text: error.response.data.msg,
+          text: "Your email or password is wrong",
+          icon: "error",
+        });
       }
     },
   },

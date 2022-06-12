@@ -3,11 +3,11 @@ export const state = () => {
     title: "Daftar Kelas",
     classes: [],
     class: {
-        id: "",
         name: "",
+        file: "",
         description: "",
-        startDate: "",
-        endDate: "",
+        dateFrom: "",
+        dateTo: ""
     },
   };
 };
