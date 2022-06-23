@@ -17,10 +17,10 @@
     </div>
     <div class="row">
   <div class="col-4">
-    <span class="justify-content-center">+ Add Session</span>
+    <span @click.native="redirectAddSession" class="justify-content-center">+ Add Session</span>
     <br>
     <div class="list-group" id="list-tab" role="tablist">
-      <a v-for="(sesi, i) in listSession" :key="i" class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Session</a>
+      <a v-for="(sesi, i) in listSession" :key="i" class="list-group-item list-group-item-action" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home"></a>
     </div>
   </div>
   <div class="col-8">
@@ -35,11 +35,35 @@
   </div>
 </template>
 <script>
+import Button from "~/components/bootstrap/Button.vue";
 export default {
+  components: { Button },
   computed: {
     listSession() {
       return this.$store.state.session.sessions;
     },
   },
-}
+  created() {
+    this.getlistSession();
+  },
+  methods: {
+    redirectAddSession() {
+      this.$router.push("/session/addsession");
+      this.$$store.dispatch("session/SET_SESSION", {
+        name: null,
+        description: null,
+        start: null,
+        end: null,
+      });
+    },
+    async getlistSession() {
+      const response = await this.requestGet("/session");
+      if (response) this.$store.dispatch("session/SET_SESSIONS", response.data.data);
+    },
+    setDetailSession(sesi) {
+      this.$store.dispatch("session/SET_SESSION", sesi);
+      this.$router.push("/session/" + sesi.id);
+  },
+},
+};
 </script>

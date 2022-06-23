@@ -166,6 +166,28 @@ export default {
         });
       }
     },
+    async register() {
+      try {
+        const response = await this.$auth.loginWith("local", {
+          data: {
+            email: this.email,
+            password: this.password,
+          },
+        });
+        // alert("Login success");
+        this.$swal({
+            title: "Welcome!",
+            text: `You are successfully login`,
+            icon: "success"});
+        this.$router.push("/");
+      }  catch (error) {
+        this.$swal({
+          title: "login failed",
+          text: `Email atau Password Salah`,
+          icon: "error",
+        });
+      }
+    },
     arrow() {
      
       const containers = document.querySelector(".container");

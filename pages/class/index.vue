@@ -3,7 +3,7 @@
     <div class="section-header">
       <h2>{{ $store.state.class.title }}</h2>
     </div>
-    <BootstrapFloatingButton @click.native="redirectAdd" />
+    <BootstrapFloatingButton @click.native="redirectAddClass" />
     <div class="row">
       <div v-for="(kelas, i) in listClass" :key="i" class="col-md-4">
         <!-- <NuxtLink :to="'/class' + kelas.id"> -->
@@ -60,7 +60,7 @@ export default {
     this.getlistClass();
   },
   methods: {
-    redirectAdd() {
+    redirectAddClass() {
       this.$router.push("/class/addclass");
       this.$store.dispatch("class/SET_CLASS", {
         name: null,

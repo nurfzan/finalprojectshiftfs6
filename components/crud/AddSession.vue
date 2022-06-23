@@ -12,22 +12,17 @@
           :val="form.description"
           @get="(newValue) => this.changeState({ description: newValue })"
         />
-        <BootstrapImageFile
-          name="Image for Class"
-          :val="file"
-          @get="(newValue) => this.changeStateImage( newValue )"
+        <BootstrapText
+          name="Start"
+          type="date"
+          :val="form.start"
+          @get="(newValue) => this.changeState({ start: newValue })"
         />
         <BootstrapText
-          name="Date From"
+          name="End"
           type="date"
-          :val="form.dateFrom"
-          @get="(newValue) => this.changeState({ dateFrom: newValue })"
-        />
-        <BootstrapText
-          name="Date To"
-          type="date"
-          :val="form.dateTo"
-          @get="(newValue) => this.changeState({ dateTo: newValue })"
+          :val="form.end"
+          @get="(newValue) => this.changeState({ end: newValue })"
         />
         <div class="text-right">
           <button
@@ -53,14 +48,9 @@ export default {
   //     form: detailClass,
   //   };
   // },
-  data() {
-    return {
-      file: null,
-    }
-  },
   computed: {
     form() {
-      return this.$store.state.class.class;
+      return this.$store.state.session.session;
     },
   },
   created() {
@@ -70,13 +60,8 @@ export default {
   },
   methods: {
     changeState(value) {
-      const kelas = { ...this.form, ...value };
-      this.$store.dispatch("class/SET_CLASS", kelas);
-    },
-    changeStateImage(value){
-      this.file = value.url
-      const kelas = { ...this.form, file: value.file };
-      this.$store.dispatch("class/SET_CLASS", kelas);
+      const sesi = { ...this.form, ...value };
+      this.$store.dispatch("session/SET_SESSION", sesi);
     },
     // async getDetail() {
     //   try {
@@ -101,27 +86,27 @@ export default {
     //     console.log(error);
     //   }
     // },
-    async tambahKelas() {
+    async tambahSesi() {
       const payload = this.form;
-      const response = await this.requestFormData("/class", payload);
-      if (response) this.$router.push("/class");
+      const response = await this.requestFormData("/session", payload);
+      if (response) this.$router.push("/session");
     },
 
-    async updateKelas() {
+    async updateSesi() {
       const payload = this.form;
       try {
-        const response = await this.$axios.put(`/class`, payload);
+        const response = await this.$axios.put(`/session`, payload);
         alert("Data berhasil diupdate");
-        this.$router.push("/class");
+        this.$router.push("/session");
       } catch (error) {
         console.log(error);
       }
     },
     async submitData() {
       if (this.$route.params.id) {
-        await this.updateKelas();
+        await this.updateSesi();
       } else {
-        await this.tambahKelas();
+        await this.tambahSesi();
       }
     },
   },

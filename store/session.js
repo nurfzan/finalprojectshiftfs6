@@ -1,16 +1,6 @@
 export const state = () => {
     return {
-      sessions: [
-          {
-              
-          },
-          {
-
-          },
-          {
-
-          },
-      ],
+      sessions: [],
         session: {
         name: "",
         description: "",

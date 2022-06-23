@@ -3,6 +3,7 @@ export const state = () => {
     title: "Daftar Kelas",
     classes: [],
     class: {
+      
         name: "",
         file: "",
         description: "",

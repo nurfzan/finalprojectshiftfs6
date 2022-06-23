@@ -48,7 +48,7 @@ export default {
               },
               {
                 name:"Presence",
-                icon: "fas fa-chalkboard-teacher",
+                icon: "fas fa-sign-in-alt",
                 link: "/presence",
               },
             ]

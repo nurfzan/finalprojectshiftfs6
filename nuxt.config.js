@@ -65,7 +65,8 @@ export default {
         endpoints: {
           login: { url: 'https://afternoon-peak-49963.herokuapp.com/user/login', method: 'post' },
           logout: false,
-          user: { url: 'https://afternoon-peak-49963.herokuapp.com/user/me', method: 'get' }
+          user: { url: 'https://afternoon-peak-49963.herokuapp.com/user/me', method: 'get' },
+          register: { url: 'https://afternoon-peak-49963.herokuapp.com/user/register', method: 'post' },
         }
       }
     }
